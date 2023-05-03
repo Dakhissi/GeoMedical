@@ -10,6 +10,40 @@ interface FilterProps {
     selectedServicesTypes: (selectedServiceTypes: any) => void;
 }
 
+
+const StyledTextField = styled(TextField)({
+  "& label, & label.Mui-focused": {
+    color: "white"
+  }
+});
+
+const CssTextField = styled(Autocomplete)({
+  '& label.Mui-focused': {
+    color: 'white',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'white',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'white',
+    },
+    '&:hover fieldset': {
+      borderColor: 'white',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'white',
+    },
+    "& label, & label.Mui-focused": {
+      color: "white"
+    },
+    ".MuiInputBase-input " : {
+      height: "20px !important"
+    }
+  },
+})
+
+
 export default function Filter(props :FilterProps){
 
     const serviceTypes = [
@@ -68,26 +102,19 @@ export default function Filter(props :FilterProps){
 
 
     return(<>
-    <IconButton onClick={handleClick} color='inherit' >
-        <FilterAltIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-    </IconButton>
-     <Menu anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose} 
-        PaperProps={{  
-            style: {  
-              width: 350,  
-            }}}
-            >
-            <Autocomplete
+ 
+            <CssTextField
+            //color white
+            sx={{color:"white"}}
+            fullWidth
             options={serviceTypes}
-            renderInput={(params) => <TextField {...params} label="Service Types" />}
-            renderOption={(props, option) => (
+            renderInput={(params) => <StyledTextField {...params} label="Service Types" />}
+            renderOption={(props, option : any) => (
                 <li {...props}>
                     <Grid container justifyContent="space-between" alignItems="center">
                         <Grid item>
                             <Switch
-                                checked={selectedServiceTypes.includes(option)}
+                                checked={selectedServiceTypes.includes(option )}
                                 onChange={handleServiceTypeCheck}
                                 value={option}
                                 color="primary"
@@ -102,11 +129,6 @@ export default function Filter(props :FilterProps){
             )}
 
             />
-     </Menu>
-
-
-
-
 
         
     </>)

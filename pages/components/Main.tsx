@@ -7,9 +7,6 @@ const DynamicMap = dynamic(() => import("./Map/Map"),{
     ssr: false
 });
 
-
-
-
 export default function Main(){
     const [listServices , setListServices] = useState<{
         name: string,
@@ -70,10 +67,6 @@ export default function Main(){
     const handleUpdateListServices = () =>{
             fetchData();
     }
-
-
-
-   // console.log(listServices)
 
     return(<>
     <NavBar isAdded={handleUpdateListServices} />

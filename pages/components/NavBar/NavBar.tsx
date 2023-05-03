@@ -1,6 +1,7 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import {Stack }from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -78,7 +79,7 @@ function NavBar(props :navBarProps) {
     >
       <Container maxWidth="xl">
         <Toolbar style={{ backgroundColor: '#E8A0BF',}} disableGutters>
-          <AddLocationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AddLocationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -98,27 +99,53 @@ function NavBar(props :navBarProps) {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-
+            <AddLocationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           </Box>
 
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                <Grid direction="row" container spacing={2}>
-                    <Grid item><Filter selectedServicesTypes={handleFilter} /></Grid>
-                    <Grid item><AddService /></Grid>
-                </Grid>
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >
+                <Filter selectedServicesTypes={handleFilter} />
+                <AddService isAdded={()=>{props.isAdded(true)}} />
             </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Grid direction="row" container spacing={2}>
-                
-                <Grid item><Filter selectedServicesTypes={handleFilter} /></Grid>
-                <Grid item><AddService isAdded={()=>{props.isAdded(true)}} /></Grid>
-            </Grid>      
-          </Box>
+          <Box sx={{ flexGrow: 0 }} style={{ display: "flex", alignItems: "center" }} >             
+               <Filter selectedServicesTypes={handleFilter} />
+                <AddService isAdded={()=>{props.isAdded(true)}} />
+          </Box> */}
+
+          <Grid container spacing={2} alignItems="center" >
+            <Grid item  xs={12} md={2} >
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
+              ><AddLocationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                GeoMedical
+              </Typography>
+              </Grid>
+              <Grid item  xs={12} md={8} > 
+              <Box sx={{ flexGrow: 0 }} style={{ display: "flex", alignItems: "center" }} >      
+                <Filter selectedServicesTypes={handleFilter} />
+                <AddService isAdded={()=>{props.isAdded(true)}} />
+                </Box>
+              </Grid>
+            </Grid>
+
+
+
         </Toolbar>
       </Container>
     </AppBar>

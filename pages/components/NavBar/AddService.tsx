@@ -93,7 +93,7 @@ export default function AddService(props :any){
       
 
     return(<>
-    <IconButton onClick={handleOpen} color='inherit' ><AddLocationAltIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /></IconButton>
+    <IconButton onClick={handleOpen} color='inherit' ><AddLocationAltIcon sx={{ display: {  md: 'flex' }, mr: 1 }} /></IconButton>
         <Dialog 
         open={open} 
         onClose={handleClose}
