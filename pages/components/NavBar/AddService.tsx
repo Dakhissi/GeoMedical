@@ -40,7 +40,8 @@ export default function AddService(props :any){
         lat:'33.58370903536546',
         lng:'-7.603131517084162',
         workHours: {
-        }
+        },
+        rating:''
 
     }
 
