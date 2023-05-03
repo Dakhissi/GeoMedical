@@ -2,7 +2,7 @@ import {useState , useEffect} from "react" ;
 import React from 'react';
 import { Marker , Popup  } from "react-leaflet";
 import Rating from '@mui/material/Rating';
-import {Box , Grid , Typography } from '@mui/material'
+import {Box , Grid , IconButton, Typography } from '@mui/material'
 
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -11,7 +11,7 @@ import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import MoreDetails from "./MoreDetails";
 import { popupHead , popupContent , popupText } from "../styles/PopUp";
-
+import AssistantDirectionIcon from '@mui/icons-material/AssistantDirection';
 interface position {
     lat : number,
     lng : number
@@ -71,7 +71,12 @@ export default function ServiceLocation(props:any){
                             <Typography variant="h6" component="div" gutterBottom>
                                 {service.name}
                             </Typography>
+                            <Typography variant="body2"component="div" gutterBottom>
+                                <IconButton color='info' size="large" > <AssistantDirectionIcon /></IconButton>
+                            </Typography>
+                            
                         </div>
+                    
                     </Grid>
                     <Grid item xs={12}>
                         <div style={popupText}>

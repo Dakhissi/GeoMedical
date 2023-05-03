@@ -10,9 +10,16 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 
 
 
+interface UserLocationProps {
+    userPosition : {
+        lat : number,
+        lng : number
+    }
+}
 
 
-export default function UserLocation(){
+
+export default function UserLocation(props : UserLocationProps ){
     const [position, setPosition] = useState(null);
     const [bbox, setBbox] = useState([]);
 
@@ -20,8 +27,10 @@ export default function UserLocation(){
     const icon = L.icon({ iconUrl: "/icons/userLocation.svg",iconSize: [48, 48], });
 
     useEffect(() => {
-      map.locate().on("locationfound", function (e) {
+      map.locate().on("locationfound", function (e : any) {
         setPosition(e.latlng);
+        props.userPosition.lat = e.latlng.lat;
+        props.userPosition.lng = e.latlng.lng;
         map.flyTo(e.latlng, map.getZoom());
         const radius = e.accuracy;
         //const circle = L.circle(e.latlng, radius);

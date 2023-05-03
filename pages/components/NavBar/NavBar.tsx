@@ -55,16 +55,11 @@ const Search = styled('div')(({ theme }) => ({
     },
   }));
   
+interface navBarProps{
+    isAdded: (isAdded: boolean) => void;
+}
 
-
-function NavBar(props :any) {
-
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-      React.useState<null | HTMLElement>(null);
-
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+function NavBar(props :navBarProps) {
 
     //handle Filter
     const handleFilter = (selectedServiceTypes: string[]) => {
@@ -98,15 +93,7 @@ function NavBar(props :any) {
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <Search>
-                <SearchIconWrapper>
-                <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-                />
-            </Search>
+
           </Box>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -117,15 +104,7 @@ function NavBar(props :any) {
             </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

@@ -8,7 +8,7 @@ import { TransitionProps } from '@mui/material/transitions';
 import AddIcon from '@mui/icons-material/Add';
 import ServiceTypes from './ServiceTypes';
 import WorkHours from './WorkHours';
-import createData from '../../api/createData';
+
 
 
 const Transition = React.forwardRef(function Transition(
@@ -68,7 +68,7 @@ export default function AddService(props :any){
         setNewService({...newService, workHours: val})
     }
 
-    console.log(newService);
+   // console.log(newService);
 
     const requestParams = {
         method: "POST",

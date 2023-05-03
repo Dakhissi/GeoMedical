@@ -73,7 +73,7 @@ export default function Main(){
 
 
 
-    console.log(listServices)
+   // console.log(listServices)
 
     return(<>
     <NavBar isAdded={handleUpdateListServices} />

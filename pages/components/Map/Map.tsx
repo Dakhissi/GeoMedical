@@ -1,28 +1,15 @@
 import { useEffect, useState } from 'react';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { MapContainer , TileLayer } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
 import UserLocation from './UserLocation';
 import ServiceLocation from './ServiceLocation';
+import Routing from './Routing';
 const position = {lat :33.58370903536546, lng :-7.603131517084162}
 
-
-// const defaultService ={
-//     name: '',
-//     type: '',
-//     description: '',
-//     url: 'https://images.theconversation.com/files/304957/original/file-20191203-66986-im7o5.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop',
-//     adresse: '',
-//     primaryPhone: '',
-//     secondaryPhone: '',
-//     email: '',
-//     webSite: '',
-//     otherContact:'',
-//     lat:'',
-//     lng:'',
-//     workHours: {
-//     }
-
-// }
+interface position {
+    lat : number,
+    lng : number
+}
 
 interface mapProps{
     listServices : { 
@@ -78,6 +65,13 @@ interface mapProps{
 export default function Map(props : mapProps){  
     //list serice state
     const [listServices , setListServices] = useState(props.listServices);
+
+    //decalre userPosition state
+    const [userPosition , setUserPosition] = useState({lat :33.58370903536546, lng :-7.603131517084162});
+
+    //declare servicePosition
+    const [servicePosition , setServicePosition] = useState({lat :33.58370903536546, lng :-7.603131517084162});
+
     //get data from props
     useEffect(
         () => {
@@ -85,7 +79,14 @@ export default function Map(props : mapProps){
         }
     )
 
-    console.log(listServices)
+    //console.log(listServices)
+
+    //handleUserLocation
+    const handleUserLocation = (position : position) => {
+        setUserPosition(position);      
+    }
+
+    console.log(userPosition)
 
     return(
         <MapContainer
@@ -95,7 +96,17 @@ export default function Map(props : mapProps){
           center={position}
           zoom={13}
           scrollWheelZoom={true}>
-            <UserLocation />
+            <UserLocation userPosition={handleUserLocation} />
+            <Routing 
+                userPosition={{
+                    lat : 33.58370903536546,
+                    lng : -7.603131517084162
+                }}
+                servicePosition={{
+                    lat : 33.6128385537005,
+                    lng : -7.514545619015777
+                }}
+            />
             {listServices.map((service) => {
                 return (
                     <ServiceLocation service={service} />
