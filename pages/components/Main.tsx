@@ -9,7 +9,9 @@ const DynamicMap = dynamic(() => import("./Map/Map"),{
 
 export default function Main(){
     const [listServices , setListServices] = useState<{
-        name: string,
+        data: {
+            task:{
+                name: string,
         id: number,
         type: string,
         description: string,
@@ -52,6 +54,8 @@ export default function Main(){
                 closeAt: string
             }
         }
+            }
+        }
     }[]>([]);
 
     async function fetchData(){
@@ -67,17 +71,23 @@ export default function Main(){
     const handleUpdateListServices = () =>{
             fetchData();
     }
-
-    const handleFilter = (selectedServicesTypes : string[]) => {
-        if(selectedServicesTypes.length == 0){
-            fetchData();
-        }else{
-            const newList = listServices.filter(service => selectedServicesTypes.includes(service.type));
-            console.log(listServices);
-            console.log(newList);
-            setListServices(newList);
+    const handleFilter = (selectedServicesTypes: string[]) => {
+        if (selectedServicesTypes.length === 0) {
+          fetchData();
+        } else {
+            const initialListServices = listServices;
+          const newList = initialListServices.filter(service =>
+            selectedServicesTypes.includes(service.data.task.type)
+          );
+          setListServices(newList);
+          //console old and new list
+          //console selectedServicesTypes
+            console.log("selectedServicesTypes : ",selectedServicesTypes);
+            console.log("old list : ",initialListServices);
+            console.log("new list : ",newList);
         }
-    }
+    
+      };
 
     return(<>
     <NavBar selectedServicesTypes={handleFilter} isAdded={handleUpdateListServices} />

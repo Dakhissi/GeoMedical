@@ -13,8 +13,10 @@ interface position {
 }
 
 interface mapProps{
-    listServices : { 
-        name: string,
+    listServices : {
+        data: {
+            task:{
+                name: string,
         id: number,
         type: string,
         description: string,
@@ -57,9 +59,8 @@ interface mapProps{
                 closeAt: string
             }
         }
-
-
-
+            }
+        }
     }[]
 }
 //
@@ -109,7 +110,6 @@ export default function Map(props : mapProps){
             {listServices.map((service) => {
                 return (
                     <ServiceLocation 
-                        key={service.id}
                         handleDirection={handleDirection}
                      service={service} />
                 )
