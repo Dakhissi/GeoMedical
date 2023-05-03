@@ -2,8 +2,8 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import Rating from '@mui/material/Rating';
-import { Grid , Typography ,Button , Dialog , DialogTitle , DialogContent , TextField,Divider} from '@mui/material'
-
+import { Box ,Grid , Typography ,Button , Dialog , DialogTitle , DialogContent , TextField,Divider} from '@mui/material'
+import StarIcon from '@mui/icons-material/Star';
 
 
 interface MoreDetailsProps {
@@ -26,26 +26,26 @@ interface MoreDetailsProps {
     }
 }
 
-const labels: { [index: string]: string } = {
-    0.5: 'Useless',
-    1: 'Useless+',
-    1.5: 'Poor',
-    2: 'Poor+',
-    2.5: 'Ok',
-    3: 'Ok+',
-    3.5: 'Good',
-    4: 'Good+',
-    4.5: 'Excellent',
-    5: 'Excellent+',
-  };
 
-  function getLabelText(value: number) {
-    return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
-  }
 
 export default function MoreDetails(props: MoreDetailsProps) {
 
+    const labels: { [index: string]: string } = {
+        0.5: 'Poor ',
+        1: 'Poor +',
+        1.5: 'Below Average',
+        2: 'Below Average+',
+        2.5: 'Average',
+        3: 'Average +',
+        3.5: 'Good',
+        4: 'Good+',
+        4.5: 'Excellent',
+        5: 'Exceptional',
+      };
     
+      function getLabelText(value: number) {
+        return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+      }
 
         const [service, setService] = useState(props.service);
 
@@ -75,6 +75,8 @@ export default function MoreDetails(props: MoreDetailsProps) {
         const handleRating = (event: React.ChangeEvent<{}>, newValue: number | null) => {
             setValue(newValue);
             setService({...service , rating : newValue});
+            //console
+            console.log(service);
           }
 
         //updateService
@@ -158,7 +160,28 @@ export default function MoreDetails(props: MoreDetailsProps) {
                             />
                         </Grid>
                         <Grid item xs={12} >
-                            <Rating />
+                        <Box
+                            sx={{
+                                width: 200,
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                            >
+                            <Rating 
+                                name="hover-feedback"
+                                value={service.rating}
+                                precision={0.5}
+                                getLabelText={getLabelText}
+                                onChange={handleRating}
+                                onChangeActive={(event, newHover) => {
+                                    setHover(newHover);
+                                }}
+                                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+                                />
+                                {value !== null && (
+                                    <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
+                                )}
+                            </Box>
                         </Grid>
 
                         <Grid item xs={12} ><Divider/></Grid>

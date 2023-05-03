@@ -1,8 +1,8 @@
 import {useState , useEffect} from "react" ;
-
+import React from 'react';
 import { Marker , Popup  } from "react-leaflet";
 import Rating from '@mui/material/Rating';
-import {Card , Grid , Typography } from '@mui/material'
+import {Box , Grid , Typography } from '@mui/material'
 
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -18,6 +18,26 @@ interface position {
 }
 
 export default function ServiceLocation(props:any){
+
+    const labels: { [index: string]: string } = {
+        0.5: 'Poor ',
+        1: 'Poor +',
+        1.5: 'Below Average',
+        2: 'Below Average+',
+        2.5: 'Average',
+        3: 'Average +',
+        3.5: 'Good',
+        4: 'Good+',
+        4.5: 'Excellent',
+        5: 'Exceptional',
+      };
+    
+      function getLabelText(value: number) {
+        return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+      }
+
+      const [value, setValue] = React.useState<number | null>(2);
+        const [hover, setHover] = React.useState(-1);
     
     //declare position state
     const [position , setPosition] = useState<position | null>(null);
@@ -43,7 +63,7 @@ export default function ServiceLocation(props:any){
                     <Grid item xs={12}>
                             <img
                             src={service.url}
-                            height="150"
+                            height="100"
                              />
                     </Grid>
                     <Grid item xs={12}>
@@ -68,7 +88,21 @@ export default function ServiceLocation(props:any){
                         </div>
                     </Grid>
                     <Grid item xs={12}>
-                        <Rating disabled />
+                    <Box
+                            sx={{
+                                width: 200,
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                            >
+                            <Rating 
+                                name="hover-feedback"
+                                value={service.rating}
+                                precision={0.5}
+                                getLabelText={getLabelText}
+                                />
+                            </Box>
+
                         <br/>
                      <MoreDetails service={service} />
                      </Grid>

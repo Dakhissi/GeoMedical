@@ -41,7 +41,7 @@ export default function AddService(props :any){
         lng:'-7.603131517084162',
         workHours: {
         },
-        rating:''
+        rating:2.5
 
     }
 
