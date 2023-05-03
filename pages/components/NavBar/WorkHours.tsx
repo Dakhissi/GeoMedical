@@ -50,7 +50,6 @@ export default function WorkHours(props :WorkHoursProps ){
         },
     });
 
-    //declare open state 
     const [open, setOpen] = useState(false);
 
     //handleOpen
@@ -65,13 +64,10 @@ export default function WorkHours(props :WorkHoursProps ){
 
     //handle Save
     const handleSave = () =>{
-        //console.log(workingHours)
         props.workingHours(workingHours);
         handleClose()
     }
     
-    //console data
-    console.log(workingHours)
 
     return(<>
      <Button onClick={handleOpen} fullWidth variant='outlined' >Edit Working Hours</Button>

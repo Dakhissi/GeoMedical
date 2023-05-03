@@ -68,8 +68,19 @@ export default function Main(){
             fetchData();
     }
 
+    const handleFilter = (selectedServicesTypes : string[]) => {
+        if(selectedServicesTypes.length == 0){
+            fetchData();
+        }else{
+            const newList = listServices.filter(service => selectedServicesTypes.includes(service.type));
+            console.log(listServices);
+            console.log(newList);
+            setListServices(newList);
+        }
+    }
+
     return(<>
-    <NavBar isAdded={handleUpdateListServices} />
+    <NavBar selectedServicesTypes={handleFilter} isAdded={handleUpdateListServices} />
     <DynamicMap listServices={listServices} />
     </>)
 }

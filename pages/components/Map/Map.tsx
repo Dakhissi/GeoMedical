@@ -82,11 +82,8 @@ export default function Map(props : mapProps){
         }
     )
 
-    //console.log(listServices)
-
     //handleUserLocation
     const handleUserLocation = (position : position) => {
-        console.log(position);
         setUserPosition(position);      
     }
 
@@ -95,7 +92,6 @@ export default function Map(props : mapProps){
         setServicePosition(position);
     }
 
-    console.log(userPosition)
 
     return(
         <MapContainer

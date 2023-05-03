@@ -61,14 +61,15 @@ const Search = styled('div')(({ theme }) => ({
 
   
 interface navBarProps{
-    isAdded: (isAdded: boolean) => void;
+    isAdded: (isAdded: boolean) => void,
+    selectedServicesTypes: (selectedServiceTypes: any) => void;
 }
 
 function NavBar(props :navBarProps) {
 
     //handle Filter
     const handleFilter = (selectedServiceTypes: string[]) => {
-        console.log(selectedServiceTypes);
+        props.selectedServicesTypes(selectedServiceTypes);
     }
 
 
@@ -79,43 +80,6 @@ function NavBar(props :navBarProps) {
     >
       <Container maxWidth="xl">
         <Toolbar style={{ backgroundColor: '#E8A0BF',}} disableGutters>
-          {/* <AddLocationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            GeoMedical
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <AddLocationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          </Box>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }} >
-                <Filter selectedServicesTypes={handleFilter} />
-                <AddService isAdded={()=>{props.isAdded(true)}} />
-            </Box>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }} style={{ display: "flex", alignItems: "center" }} >             
-               <Filter selectedServicesTypes={handleFilter} />
-                <AddService isAdded={()=>{props.isAdded(true)}} />
-          </Box> */}
-
           <Grid container spacing={2} alignItems="center" >
             <Grid item  xs={12} md={2} >
               <Typography

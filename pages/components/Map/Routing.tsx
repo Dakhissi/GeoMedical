@@ -24,7 +24,6 @@ L.Marker.prototype.options.icon = L.icon({
 
 const Routing = ({ userPosition , servicePosition} : RoutingEnds ) => {
     const map = useMap();
-    console.log("servicePosition :", servicePosition);
     useEffect(() => {
     if (!map) return;
     const routingControl = L.Routing.control({

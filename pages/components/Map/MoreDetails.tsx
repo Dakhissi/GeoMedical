@@ -97,6 +97,15 @@ export default function MoreDetails(props: MoreDetailsProps) {
                                 disabled
                             />
                         </Grid>
+                        <Grid item xs={12} md={6}  >
+                            <TextField
+                                fullWidth
+                                label="Service Type"
+                                variant="outlined"
+                                value={service.type}
+                                disabled
+                            />
+                        </Grid>
                         <Grid item xs={12} md={6}>
                             <TextField
                                 fullWidth
