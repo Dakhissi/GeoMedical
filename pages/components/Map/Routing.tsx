@@ -6,7 +6,7 @@ import "leaflet-routing-machine";
 
 
 L.Marker.prototype.options.icon = L.icon({
-    iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png"
+    iconUrl: "/icons/Empty.svg"
   });
 
   interface RoutingEnds  {

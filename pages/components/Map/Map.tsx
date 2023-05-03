@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { MapContainer , TileLayer } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
@@ -61,16 +62,18 @@ interface mapProps{
 
     }[]
 }
-
+//
 export default function Map(props : mapProps){  
     //list serice state
     const [listServices , setListServices] = useState(props.listServices);
 
     //decalre userPosition state
-    const [userPosition , setUserPosition] = useState({lat :33.58370903536546, lng :-7.603131517084162});
+    const [userPosition , setUserPosition] = React.useState<position >({
+        lat : 0, lng :0
+    })
 
     //declare servicePosition
-    const [servicePosition , setServicePosition] = useState({lat :33.58370903536546, lng :-7.603131517084162});
+    const [servicePosition , setServicePosition] = React.useState<position>({lat :33.58370903536546, lng :-7.603131517084162})
 
     //get data from props
     useEffect(
@@ -83,7 +86,13 @@ export default function Map(props : mapProps){
 
     //handleUserLocation
     const handleUserLocation = (position : position) => {
+        console.log(position);
         setUserPosition(position);      
+    }
+
+    //handleDirection
+    const handleDirection = (position : position) => {
+        setServicePosition(position);
     }
 
     console.log(userPosition)
@@ -98,18 +107,15 @@ export default function Map(props : mapProps){
           scrollWheelZoom={true}>
             <UserLocation userPosition={handleUserLocation} />
             <Routing 
-                userPosition={{
-                    lat : 33.58370903536546,
-                    lng : -7.603131517084162
-                }}
-                servicePosition={{
-                    lat : 33.6128385537005,
-                    lng : -7.514545619015777
-                }}
+                userPosition={userPosition}
+                servicePosition={servicePosition}
             />
             {listServices.map((service) => {
                 return (
-                    <ServiceLocation service={service} />
+                    <ServiceLocation 
+                        key={service.id}
+                        handleDirection={handleDirection}
+                     service={service} />
                 )
             }
             )}

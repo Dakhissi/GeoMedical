@@ -1,3 +1,4 @@
+import React from 'react';
 import {useState , useEffect} from "react" ;
 
 import { Marker , Popup , useMap } from "react-leaflet";
@@ -10,17 +11,21 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 
 
 
-interface UserLocationProps {
-    userPosition : {
-        lat : number,
-        lng : number
-    }
+
+
+interface position{
+    lat : number,
+    lng : number
+}
+
+interface UserProps {
+    userPosition : (position : position )  => void;
 }
 
 
+export default function UserLocation(props : UserProps ){
 
-export default function UserLocation(props : UserLocationProps ){
-    const [position, setPosition] = useState(null);
+    const [position, setPosition] = React.useState<position>({lat :33.58370903536546, lng :-7.603131517084162})
     const [bbox, setBbox] = useState([]);
 
     const map = useMap();
@@ -29,16 +34,21 @@ export default function UserLocation(props : UserLocationProps ){
     useEffect(() => {
       map.locate().on("locationfound", function (e : any) {
         setPosition(e.latlng);
-        props.userPosition.lat = e.latlng.lat;
-        props.userPosition.lng = e.latlng.lng;
+
         map.flyTo(e.latlng, map.getZoom());
         const radius = e.accuracy;
+        props.userPosition(
+          {lat : e.latlng.lat, lng : e.latlng.lng}
+        )
+
         //const circle = L.circle(e.latlng, radius);
         //circle.addTo(map);
         setBbox(e.bounds.toBBoxString().split(","));
       });
       
     }, [map]);
+
+
 
     return position === null ? null : (
         <Marker position={position}  icon={icon}  >

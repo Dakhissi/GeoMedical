@@ -44,6 +44,12 @@ export default function ServiceLocation(props:any){
 
     //declare Service state
     const [service , setService] = useState(props.service.data.task);
+
+    //handleDirection
+    const handleDirection = (position : {lat:number,lng:number}) => {
+        props.handleDirection(position);
+    }
+
     
     useEffect(() => {
         if (props.service) {
@@ -72,7 +78,9 @@ export default function ServiceLocation(props:any){
                                 {service.name}
                             </Typography>
                             <Typography variant="body2"component="div" gutterBottom>
-                                <IconButton color='info' size="large" > <AssistantDirectionIcon /></IconButton>
+                                <IconButton color='info' onClick={
+                                    () => handleDirection({lat:+service.lat,lng:+service.lng})
+                                } size="large" > <AssistantDirectionIcon /></IconButton>
                             </Typography>
                             
                         </div>

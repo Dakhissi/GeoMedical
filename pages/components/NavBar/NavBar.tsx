@@ -54,6 +54,10 @@ const Search = styled('div')(({ theme }) => ({
       },
     },
   }));
+
+
+
+
   
 interface navBarProps{
     isAdded: (isAdded: boolean) => void;
@@ -70,9 +74,10 @@ function NavBar(props :navBarProps) {
   return (
     <AppBar 
     position="fixed"
+    style={{ backgroundColor: '#E8A0BF',}}
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar style={{ backgroundColor: '#E8A0BF',}} disableGutters>
           <AddLocationIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"

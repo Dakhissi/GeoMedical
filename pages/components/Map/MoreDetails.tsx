@@ -79,13 +79,7 @@ export default function MoreDetails(props: MoreDetailsProps) {
             console.log(service);
           }
 
-        //updateService
-        const updateService = () => {
-            setService(service);
-            setOpen(false);
-        }
-
-       
+     
         return(<>
 
             <Button variant="contained"  onClick={handleOpen}>More Details</Button>
@@ -206,6 +200,8 @@ export default function MoreDetails(props: MoreDetailsProps) {
 
             </Grid>
                 </DialogContent>
+
+
             </Dialog>
 
 
