@@ -69,6 +69,9 @@ export default function Map(props : mapProps){
     //list serice state
     const [listServices , setListServices] = useState(props.listServices);
 
+    const [inBrowser , setInBrowser] = useState(false);
+
+
     //decalre userPosition state
     const [userPosition , setUserPosition] = React.useState<position >({
         lat : 0, lng :0
@@ -96,7 +99,7 @@ export default function Map(props : mapProps){
     }
 
 
-    return(
+    return(<div >
         <MapContainer
             style={{
                 height: "100vh",
@@ -105,10 +108,10 @@ export default function Map(props : mapProps){
           zoom={13}
           scrollWheelZoom={true}>
             <UserLocation userPosition={handleUserLocation} />
-            <Routing 
+            {/* <Routing 
                 userPosition={userPosition}
                 servicePosition={servicePosition}
-            />
+            /> */}
             {listServices.map((service) => {
                 return (
                     <ServiceLocation 
@@ -125,5 +128,6 @@ export default function Map(props : mapProps){
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
         </MapContainer>
+        </div>
       )
 }
