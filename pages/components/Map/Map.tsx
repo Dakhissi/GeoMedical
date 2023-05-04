@@ -5,12 +5,15 @@ import "leaflet/dist/leaflet.css";
 import UserLocation from './UserLocation';
 import ServiceLocation from './ServiceLocation';
 import Routing from './Routing';
+import dynamic from 'next/dynamic';
 const position = {lat :33.58370903536546, lng :-7.603131517084162}
 
 interface position {
     lat : number,
     lng : number
 }
+//Dynamic Routing
+const DynamicRouting = dynamic(() => import('./Routing'),{ssr: false});
 
 interface mapProps{
     listServices : {
@@ -108,10 +111,10 @@ export default function Map(props : mapProps){
           zoom={13}
           scrollWheelZoom={true}>
             <UserLocation userPosition={handleUserLocation} />
-            {/* <Routing 
+            <DynamicRouting 
                 userPosition={userPosition}
                 servicePosition={servicePosition}
-            /> */}
+            /> 
             {listServices.map((service) => {
                 return (
                     <ServiceLocation 
