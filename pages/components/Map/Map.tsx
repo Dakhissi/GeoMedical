@@ -111,6 +111,7 @@ export default function Map(props : mapProps){
             {listServices.map((service) => {
                 return (
                     <ServiceLocation 
+                        key={service.data.task.id}
                         handleDirection={handleDirection}
                      service={service} />
                 )
