@@ -30,18 +30,16 @@ export default function UserLocation(props : UserProps ){
 
     const map = useMap();
     const icon = L.icon({ iconUrl: "/icons/userLocation.svg",iconSize: [48, 48], });
-
     useEffect(() => {
+      const {userPosition} = props;
       map.locate().on("locationfound", function (e : any) {
         setPosition(e.latlng);
         map.flyTo(e.latlng, map.getZoom());
-        props.userPosition(
-          {lat : e.latlng.lat, lng : e.latlng.lng}
-        )
+        userPosition({lat : e.latlng.lat, lng : e.latlng.lng})
         setBbox(e.bounds.toBBoxString().split(","));
       });
       
-    }, [map, props.userPosition]);
+    }, [map]);
 
 
 
