@@ -27,10 +27,9 @@ function NavBar(props :navBarProps) {
   return (
     <AppBar 
     position="fixed"
-    style={{ backgroundColor: '#E8A0BF',}}
     >
       <Container maxWidth="xl">
-        <Toolbar style={{ backgroundColor: '#E8A0BF',}} disableGutters>
+        <Toolbar  disableGutters>
           <Grid container spacing={2} alignItems="center" >
             <Grid item  xs={12} md={2} >
               <Typography

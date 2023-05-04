@@ -67,9 +67,10 @@ export default function ServiceLocation(props:any){
             <div style={popupContent} >
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                            <Image
+                            <img
                             src={service.url}
                             height="100"
+                            width="100"
                             alt={service.name}
                              />
                     </Grid>
