@@ -80,7 +80,8 @@ export default function Map(props : mapProps){
     useEffect(
         () => {
             setListServices(props.listServices);
-        }
+        },
+        [props.listServices]
     )
 
     //handleUserLocation

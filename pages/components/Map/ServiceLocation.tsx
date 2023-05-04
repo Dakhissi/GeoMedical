@@ -3,7 +3,7 @@ import React from 'react';
 import { Marker , Popup  } from "react-leaflet";
 import Rating from '@mui/material/Rating';
 import {Box , Grid , IconButton, Typography } from '@mui/material'
-
+import Image from "next/image";
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -56,7 +56,7 @@ export default function ServiceLocation(props:any){
           setService(props.service.data.task);
           setPosition({ lat: +props.service.data.task.lat, lng: +props.service.data.task.lng });
         }
-      }, [props.service.data.task]);
+      }, [props.service]);
 
     const icon = L.icon({ iconUrl: "/icons/serviceLocation.svg",iconSize: [32, 32], });
 
@@ -67,9 +67,10 @@ export default function ServiceLocation(props:any){
             <div style={popupContent} >
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
-                            <img
+                            <Image
                             src={service.url}
                             height="100"
+                            alt={service.name}
                              />
                     </Grid>
                     <Grid item xs={12}>

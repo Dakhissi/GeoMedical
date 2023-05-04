@@ -55,7 +55,8 @@ export default function MoreDetails(props: MoreDetailsProps) {
         useEffect(
             () => {
                 setService(props.service);
-            }
+            },
+            [props.service]
         )
     
         //declare open state 

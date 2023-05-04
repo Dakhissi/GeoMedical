@@ -34,19 +34,14 @@ export default function UserLocation(props : UserProps ){
     useEffect(() => {
       map.locate().on("locationfound", function (e : any) {
         setPosition(e.latlng);
-
         map.flyTo(e.latlng, map.getZoom());
-        const radius = e.accuracy;
         props.userPosition(
           {lat : e.latlng.lat, lng : e.latlng.lng}
         )
-
-        //const circle = L.circle(e.latlng, radius);
-        //circle.addTo(map);
         setBbox(e.bounds.toBBoxString().split(","));
       });
       
-    }, [map]);
+    }, [map, props.userPosition]);
 
 
 
