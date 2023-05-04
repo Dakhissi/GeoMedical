@@ -1,11 +1,13 @@
-FROM node : 18
+FROM node:18
 
 
 WORKDIR usr/src/app
 
 COPY . . 
 
-RUN npm install --production 
-RUN npm run build
+RUN yarn install
 
-CMD ["npm", "run"]
+
+CMD ["yarn", "run", "dev"]
+
+
