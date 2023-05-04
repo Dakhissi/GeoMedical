@@ -3,7 +3,7 @@
 ![image](https://user-images.githubusercontent.com/68500984/235949124-e9b67245-7a1a-4fff-b858-9e5a0e245d25.png)
 
 
-GeoMedical is a web app that helps you find nearby medical services using next.js, react, typescript and leaflet.js. 
+GeoMedical is a web app that helps you find nearby medical services 
 
 ![image](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
 ![image](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
