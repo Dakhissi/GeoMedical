@@ -9,6 +9,7 @@ const DynamicMap = dynamic(() => import("./Map/Map"),{
 
 export default function Main(){
     const [listServices , setListServices] = useState<{
+        ts: number,
         data: {
             task:{
                 name: string,
