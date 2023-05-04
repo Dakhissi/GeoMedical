@@ -74,7 +74,7 @@ export default function Map(props : mapProps){
     })
 
     //declare servicePosition
-    const [servicePosition , setServicePosition] = React.useState<position>({lat :33.58370903536546, lng :-7.603131517084162})
+    const [servicePosition , setServicePosition] = React.useState<position>({lat :0, lng :0})
 
     //get data from props
     useEffect(

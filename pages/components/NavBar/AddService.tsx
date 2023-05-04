@@ -90,6 +90,10 @@ export default function AddService(props :any){
         handleClose();
         props.isAdded(true);
     }
+
+    const handleType = (val:any) =>{
+        setNewService({...newService, type: val})
+    }
       
 
     return(<>
@@ -110,7 +114,7 @@ export default function AddService(props :any){
                                 <TextField fullWidth onChange={handleInputChange} name='name' type="text" placeholder=" Name" />
                             </Grid>
                             <Grid item xs={12} md={6} >
-                                <ServiceTypes />
+                                <ServiceTypes selectedServiceType={handleType}  />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField fullWidth onChange={handleInputChange} name='description' multiline rows={3} type="text" placeholder=" Description" />

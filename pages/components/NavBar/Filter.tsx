@@ -1,24 +1,61 @@
 import React from 'react';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { IconButton } from '@mui/material';
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/material/styles';
-import {Menu , Grid} from '@mui/material';
-import {Autocomplete , TextField} from '@mui/material';
+import {Autocomplete , TextField, Grid} from '@mui/material';
+
+const serviceTypes = [
+  'Primary Care',
+  'Urgent Care',
+  'Emergency Care',
+  `Women's Health Care `,
+  'Mental Health Care',
+  'Pediatrics',
+  'Geriatrics',
+  'Holistic Medicine',
+  'Chiropractic Care',
+  'Integrative Medicine',
+  'Dentistry',
+  'Optometry',
+  'Pharmacy',
+  'Physical Therapy',
+  'Occupational Therapy',
+  'Speech Therapy',
+  'Audiology',
+  'Podiatry',
+  'Acupuncture',
+  'Massage Therapy',
+  'Nutrition',
+  'Fitness',
+  'Health Coaching'
+]
 
 interface FilterProps {
     selectedServicesTypes: (selectedServiceTypes: any) => void;
+    
+}
+
+interface AutocompleteProps  {
+    renderInput: any;
+    renderOption: any;
+    options: any;
+    fullWidth: boolean;
+}
+
+interface TextFieldProps  {
+    label: string;
 }
 
 
-const StyledTextField = styled(TextField)({
+
+const StyledTextField : React.FC<TextFieldProps > = styled(TextField)<TextFieldProps>`
   "& label, & label.Mui-focused": {
     color: "white"
   }
-});
+}`;
 
-const CssTextField = styled(Autocomplete)({
-  '& label.Mui-focused': {
+
+const CssTextField: React.FC<AutocompleteProps> = styled(Autocomplete)<AutocompleteProps>`
+  & label.Mui-focused': {
     color: 'white',
   },
   '& .MuiInput-underline:after': {
@@ -41,46 +78,10 @@ const CssTextField = styled(Autocomplete)({
       height: "20px !important"
     }
   },
-})
+`;
 
 
-export default function Filter(props :FilterProps){
-
-    const serviceTypes = [
-        'Primary Care',
-        'Urgent Care',
-        'Emergency Care',
-        `Women's Health Care `,
-        'Mental Health Care',
-        'Pediatrics',
-        'Geriatrics',
-        'Holistic Medicine',
-        'Chiropractic Care',
-        'Integrative Medicine',
-        'Dentistry',
-        'Optometry',
-        'Pharmacy',
-        'Physical Therapy',
-        'Occupational Therapy',
-        'Speech Therapy',
-        'Audiology',
-        'Podiatry',
-        'Acupuncture',
-        'Massage Therapy',
-        'Nutrition',
-        'Fitness',
-        'Health Coaching'
-    ]
-
-    //declare open state
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+export default function Filter(props :FilterProps ){
 
     //declare selected servicesType state
     const [selectedServiceTypes, setSelectedServiceTypes] = React.useState<string[]>([]);
@@ -104,12 +105,10 @@ export default function Filter(props :FilterProps){
     return(<>
  
             <CssTextField
-            //color white
-            sx={{color:"white"}}
             fullWidth
             options={serviceTypes}
-            renderInput={(params) => <StyledTextField {...params} label="Service Types" />}
-            renderOption={(props, option : any) => (
+            renderInput={(params : any) => <StyledTextField {...params} label="Service Types" />}
+            renderOption={(props :any , option : any) => (
                 <li {...props}>
                     <Grid container justifyContent="space-between" alignItems="center">
                         <Grid item>

@@ -2,6 +2,10 @@ import { Autocomplete, TextField } from "@mui/material";
 
 //create auto complete for this list 
 
+interface props{
+    selectedServiceType: (selectedServiceType: any) => void;
+}
+
 const serviceTypes = [
     'Primary Care',
     'Urgent Care',
@@ -28,12 +32,23 @@ const serviceTypes = [
     'Health Coaching'
 ]
 
-export default function ServiceTypes() {
+export default function ServiceTypes(props:props) {
     return (
         <>
         <Autocomplete
         options={serviceTypes}
         renderInput={(params) => <TextField {...params} label="Service Types" />}
+        onChange={(event, index, value) => {
+            props.selectedServiceType(
+                value
+            )
+        }}
+
+        renderOption={(props :any , option : any) => (
+            <li {...props}>
+                {option}
+            </li>
+        )}
 
         />
         </>

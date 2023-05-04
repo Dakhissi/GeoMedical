@@ -80,11 +80,6 @@ export default function Main(){
             selectedServicesTypes.includes(service.data.task.type)
           );
           setListServices(newList);
-          //console old and new list
-          //console selectedServicesTypes
-            console.log("selectedServicesTypes : ",selectedServicesTypes);
-            console.log("old list : ",initialListServices);
-            console.log("new list : ",newList);
         }
     
       };
